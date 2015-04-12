@@ -8,6 +8,7 @@
   height: 3rem;
   line-height: 3rem;
   padding: 0 1rem;
+  z-index: 11;
   &:before {
     @extend .fa;
     margin-right: 0.5rem;

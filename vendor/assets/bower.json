@@ -1,6 +1,9 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "normalize.css": "latest"
+    "normalize.css": "latest",
+    "fullpage.js": "latest"
+  },
+  "resolutions": {
   }
 }
