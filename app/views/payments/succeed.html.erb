@@ -1,0 +1,18 @@
+<div class="bg-header"></div>
+	<div class="wrap-xs">
+	  <div class="logo x-centered l"></div>
+	  <div class="panel text-center form-panel">
+	  	<% if @response.payment_exec_status != "COMPLETED" %>
+			<h3>Ocurrio un error, intenta de nuevo</h3>
+		<%else%>
+			<h3>El pago se añadio de forma correcta</h3>
+		<%end%>
+	  	<a href="/dashboard">Dashboard</a>
+	  </div>
+	</div>
+</div>
+
+
+<script>
+
+</script>
