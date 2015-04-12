@@ -1,0 +1,7 @@
+.dashboard-aside-menu {
+  @include position(fixed, 0px null 0px 0px);
+  width: 300px;
+  background-color: #342D38;
+  box-shadow: -3px 0px 3px rgba(#000, 0.5) inset;
+  padding: 1rem;
+}

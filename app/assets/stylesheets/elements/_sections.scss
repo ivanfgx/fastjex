@@ -1,0 +1,5 @@
+.section.main {
+  background-color: $brand-color;
+  color: #FFF;
+  @include background-image(image-url(''), linear-gradient(#493554, #7E5295));
+}

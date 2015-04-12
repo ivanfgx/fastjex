@@ -4,6 +4,8 @@
 .left { float: left }
 .right { float: right }
 
+.wrap { @include wrap() }
+.wrap-s { @include wrap(700px) }
 .wrap-xs { @include wrap(400px) }
 
 .x-centered {
@@ -18,4 +20,8 @@
   float: left;
   &:first-child { padding-right: 0.5em }
   &:last-child { padding-left: 0.5em }
+}
+
+.block {
+  display: block;
 }

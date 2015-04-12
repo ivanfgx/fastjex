@@ -1,0 +1,11 @@
+<div class="dashboard-aside-menu">
+  <a href="javascript:void(0)" class="button expand block">Nuevo pago</a>
+  <div>
+    <% @creditors.each do |c| %>
+      <div>
+        <span><% c.account %></span>
+        <span><% c.amount %></span>
+      </div>
+    <% end %>
+  </div>
+</div>

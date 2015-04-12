@@ -4,10 +4,14 @@ JEX =
       $(this).parent().slideUp(200)
       return
     return
-  visitors:
+  welcome:
     init: ->
       return
     index: ->
+      $('#fullpage').fullpage
+        anchors: ['main', 'why', 'what', 'this']
+        fixedElements: '#header, .footer'
+        navigation: true
       return
 
 UTIL =
