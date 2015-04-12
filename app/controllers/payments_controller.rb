@@ -3,31 +3,32 @@ class PaymentsController < ApplicationController
   require 'paypal-sdk-adaptivepayments'
   require 'rest_client'
   require "pp-adaptive"
-
+  require 'json'
 
   def check_for_payments
-    
+    end
   def test
-    result = Payment.new
-    result = result.pay(User.last, Payment.last)
+    result = PaymentSchedule.new
+    result = result.pay(User.last, PaymentSchedule.last)
     render json: result
   end
 
   def pay
-    payment = Payment.find(params[:id])
+    payment = PaymentSchedule.find(params[:id])
     @api = PayPal::SDK::AdaptivePayments.new
 
     # Build request object
     @pay = @api.build_pay({
       :actionType => "PAY",
       :cancelUrl => "http://localhost:3000/samples/adaptive_payments/pay",
-      :currencyCode => payment.currency.abbreviation,
+      :currencyCode => "MXN",
       :senderEmail => payment.user.email,
       :ipnNotificationUrl => "http://localhost:3000/samples/adaptive_payments/ipn_notify",
+      :memo => "Nomina",
       :receiverList => {
         :receiver => [{
           :amount => payment.amount,
-          :email => payment.creditor.email }] },
+          :email => payment.account }] },
       :returnUrl => "http://localhost:3000/samples/adaptive_payments/pay" })
 
     # Make API call & get response
@@ -46,7 +47,7 @@ class PaymentsController < ApplicationController
 
   def subscription
     #PA-2BS25581P84232213
-    payment = Payment.find(params[:id]);
+    payment = PaymentSchedule.find(params[:id]);
     client = AdaptivePayments::Client.new(
       :user_id       => "dude_api1.hotmail.es",
       :password      => "WC89FAW4E6N5PEKA",
@@ -56,11 +57,12 @@ class PaymentsController < ApplicationController
     )
 
     client.execute(:Pay,
-      :preapproval_key => payment.pre_approval_key,
+      :preapproval_key => payment.pak,
       :action_type     => "PAY",
-      :receiver_email  => payment.creditor,
+      :receiver_email  => payment.account,
       :receiver_amount => payment.amount,
-      :currency_code   => payment.currency.abbreviation,
+      :currency_code   => "MXN",
+      :memo => "Nomina",
       :cancel_url      => "https://lvh.me:3000/cancel",
       :return_url      => "https://lvh.me:3000/"
     ) do |response|
@@ -71,12 +73,15 @@ class PaymentsController < ApplicationController
       else
         puts "#{response.ack_code}: #{response.error_message}"
       end
-      render json: response
+      @response = response
+      @resJSON =  response.to_json
+      render :succeed
     end
   end
 
   def preapprovalkey
-    payment = Payment.find(params[:id])
+    payment = PaymentSchedule.find(params[:id])
+
     client = AdaptivePayments::Client.new(
       :user_id       => "dude_api1.hotmail.es",
       :password      => "WC89FAW4E6N5PEKA",
@@ -88,8 +93,9 @@ class PaymentsController < ApplicationController
     client.execute(:Preapproval,
       :ending_date      => payment.end_date,
       :starting_date    => payment.start_date,
-      :max_total_amount => BigDecimal(1999.00),
-      :currency_code    => params[:currency],
+      :max_total_amount => BigDecimal("1999.00"),
+      :currency_code    => "MXN",
+      :memo => "Nomina",
       :cancel_url       => "http://lvh.me:3000/cancelled",
       :return_url       => "http://lvh.me:3000/subs/"+params[:id]
     ) do |response|
@@ -100,6 +106,8 @@ class PaymentsController < ApplicationController
 
         # send the user to PayPal to give their approval
         # e.g. https://www.paypal.com/webscr?cmd=_ap-preapproval&preapprovalkey=abc
+        payment.pak = response.preapproval_key
+        payment.save
         redirect_to client.preapproval_url(response)
         
       else
