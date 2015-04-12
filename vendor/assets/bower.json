@@ -3,7 +3,5 @@
   "dependencies": {
     "normalize.css": "latest",
     "fullpage.js": "latest"
-  },
-  "resolutions": {
   }
 }

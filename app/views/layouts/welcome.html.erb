@@ -3,7 +3,8 @@
 <head>
   <title>Jex</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'fullpage.js/jquery.fullPage.css', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller.controller_name %> <%= action_name %>" data-controller="<%= controller.controller_name %>" data-action="<%= action_name %>">
