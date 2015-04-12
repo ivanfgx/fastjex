@@ -47,6 +47,7 @@ class PaymentSchedulesController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @payment_schedule.errors, status: :unprocessable_entity }
+        
       end
     end
   end
