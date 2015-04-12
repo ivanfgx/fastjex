@@ -1,0 +1,25 @@
+<div class="bg-header"></div>
+<div class="wrap-xs">
+  <div class="logo x-centered l"></div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { novalidate: true, class: "panel text-center form-panel"} ) do |f| %>
+    <h2>Éntrele</h2>
+    <ul class="form-fields">
+      <li class="field"> <%= f.email_field :email, autofocus: true, class: "input text-center", placeholder: "Email" %> </li>
+      <li class="field"> <%= f.password_field :password, autocomplete: "off", class: "input text-center", placeholder: "Contraseña" %> </li>
+      <li class="field"> <%= f.submit "Entrar", class: "button expand" %> </li>
+      <% if devise_mapping.rememberable? -%>
+        <li class="field clearfix">
+          <small class="left light-text checkbox-label">Recuérdame</small>
+          <label class="switch right">
+            <%= f.check_box :remember_me %>
+            <div class="checkbox"></div>
+          </label>
+        </li>
+      <% end -%>
+    </ul>
+  <% end %>
+  <br>
+  <small>
+    <%= render "devise/shared/links" %>
+  </small>
+</div>

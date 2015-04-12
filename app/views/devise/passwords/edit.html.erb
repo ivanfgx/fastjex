@@ -1,0 +1,19 @@
+<% title 'Cambia tu contraseña' %>
+<div class="bg-header"></div>
+<div class="wrap-xs">
+  <div class="logo x-centered l"></div>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "panel text-center form-panel" }) do |f| %>
+    <%= f.hidden_field :reset_password_token %>
+    <h2>Cambia tu contraseña</h2>
+    <%= devise_error_messages! %>
+    <ul class="form-fields">
+      <li class="field"><%= f.password_field :password, autofocus: true, autocomplete: "off", placeholder: "Nueva contraseña", class: "input" %></li>
+      <li class="field"><%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Nueva contraseña, otra vez", class: "input" %></li>
+      <li class="field"><%= f.submit "Cambiar", class: "button expand" %></li>
+    </ul>
+  <% end %>
+  <br>
+  <small>
+    <%= render "devise/shared/links" %>
+  </small>
+</div>

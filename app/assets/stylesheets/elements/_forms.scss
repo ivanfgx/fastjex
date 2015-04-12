@@ -1,0 +1,111 @@
+.form-fields {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+.multiple-fields {
+  @include clearfix;
+}
+
+.form-errors {
+  border: 1px solid #F6545C;
+  border-radius: $g-radius;
+  padding: 0.5rem;
+  list-style: none;
+  word-wrap: break-word;
+}
+
+.input {
+  @include transition(background-color 300ms, border-color 300ms);
+  background-color: #F4F4F4;
+  width: 100%;
+  height: 42px;
+  padding: 0px 0.5em;
+  font-size: 1rem;
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: $g-radius;
+  &:focus {
+    background-color: #FFF;
+    border-color: $brand-color
+  }
+}
+
+.button {
+  @include transition(background-color 300ms);
+  @include appearance(none);
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  border: none;
+  padding: 0px 1em;
+  background-color: $brand-color;
+  border-radius: $g-radius;
+  color: color-by-bg($brand-color);
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 0.15em;
+  &.expand { width: 100% }
+  &:hover {
+    background-color: shade($brand-color, 20%);
+  }
+}
+
+.switch {  
+  $switch-width: 35px;
+  $switch-padding: 0px;
+  $switch-height: 10px;
+  $knob-size: $switch-height - ($switch-padding * 2);
+  $knob-width: $knob-size;
+
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+  input {
+    display: none;
+
+    + .checkbox {
+      @include size($switch-width $switch-height);
+      cursor: pointer;
+      position: relative;
+      width: $switch-width;
+      border-radius: 999em;
+      z-index: 0;
+      background-color: #CCC;
+
+      &::before {
+        @include position(absolute, $switch-padding 0 0 $switch-padding);
+        content: "";
+        width: $switch-width - ($switch-padding * 2);
+        z-index: 1;
+      }
+
+      &::after {
+        @include position(absolute, -3px 0 0 -3px);
+        @include size(16px);
+        //@include size($knob-size);
+        background-color: #888;
+        content: "";
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        z-index: 2;
+      }
+    }
+
+    &:checked {
+      + .checkbox {
+
+        &::after {
+          background-color: $brand-color;
+          left: $switch-width - $knob-width - ($switch-padding * 2) + 1px;
+        }
+      }
+    }
+  }
+}

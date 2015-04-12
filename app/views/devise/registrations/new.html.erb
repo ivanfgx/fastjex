@@ -1,0 +1,26 @@
+<div class="bg-header"></div>
+<div class="wrap-xs">
+  <div class="logo x-centered l"></div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "panel text-center form-panel"}) do |f| %>
+    <h2>Regístrate</h2>
+    <%= devise_error_messages! %>
+    <ul class="form-fields">
+      <li class="field multiple-fields">
+        <div class="half-field">
+          <%= f.text_field :name, autofocus: true, placeholder: "Nombre", class: 'input' %>
+        </div>
+        <div class="half-field">
+          <%= f.text_field :last_name, placeholder: "Apellido", class: 'input' %>
+        </div>
+      </li>
+      <li class="field"><%= f.email_field :email, placeholder: "Email", class: 'input' %></li>
+      <li class="field"><%= f.password_field :password, autocomplete: "off", placeholder: "Contraseña", class: 'input' %></li>
+      <li class="field"><%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Contraseña otra vez", class: 'input' %></li>
+      <li class="field"><%= f.submit "Registrarme", class: "button expand" %></li>
+    </ul>
+  <% end %>
+  <br>
+  <small>
+    <%= render "devise/shared/links" %>
+  </small>
+</div>

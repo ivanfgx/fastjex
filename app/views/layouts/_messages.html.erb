@@ -1,0 +1,10 @@
+<% if !flash.empty? %>
+  <div class="flashes"> 
+    <% flash.keys.each do |k| %> 
+      <div class="flash <%= k %>">
+        <%= flash[k] %>
+        <a href="javascript:void(0)" data-close=""></a>
+      </div>
+    <% end %>
+  </div>
+<% end %>

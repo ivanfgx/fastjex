@@ -1,0 +1,38 @@
+.flashes {
+  @include position(fixed, 0px 0px null 0px);
+}
+
+.flash {
+  background-color: #9AC375;
+  color: rgba(#000, 0.5);
+  height: 3rem;
+  line-height: 3rem;
+  padding: 0 1rem;
+  &:before {
+    @extend .fa;
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    content: '\f1cd';
+  }
+  [data-close] {
+    @extend .fa;
+    @include transition(200ms color);
+    @include position(absolute, null 0px null null);
+    @include size(3rem);
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 3rem;
+    display: inline-block;
+    color: rgba(#000, 0.5);
+    &:hover { color: rgba(#000, 0.7) }
+    &:after { content: '\f05c' }
+  }
+  &.error {
+    background-color: #FF5C5C;
+    &:before { content: '\f188' }
+  }
+  &.alert {
+    background-color: #E7C652;
+    &:before { content: '\f06a' }
+  }
+}

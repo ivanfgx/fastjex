@@ -1,0 +1,19 @@
+@mixin wrap($size: 1000px) {
+  width: 100%;
+  max-width: $size;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+@function color-by-bg($bg) {
+  @if( lightness($bg) > 60% ) { @return #000 !important; }
+  @else { @return #fff !important; }
+}
+@mixin after($name) {
+  @if not map-has-key($breakpoints, $name) {
+    @warn "Warning: `#{$name}` is not a valid breakpoint name.";
+  } @else {
+    @media (min-width: map-get($breakpoints, $name)) {
+      @content;
+    }
+  }
+}

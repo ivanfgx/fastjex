@@ -1,0 +1,15 @@
+.bg-header {
+  height: 200px;
+  background-color: $brand-color;
+  margin-bottom: -7rem;
+}
+.panel {
+  box-shadow: 0px 1px 1px rgba(#000, 0.1);
+  background-color: #FFF;
+  @include after(m) {
+    border-radius: $g-radius;
+  }
+}
+.form-panel {
+  padding: 1rem 2rem 1rem 2rem;
+}

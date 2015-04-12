@@ -1,0 +1,22 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+body {
+  font-family: $helvetica;
+}
+.text-center { text-align: center !important }
+.text-left { text-align: left !important }
+
+.light-text { color: #CCC }
+
+a {
+  text-decoration: none;
+  color: $brand-color;
+  &:hover {
+    color: shade($brand-color, 30%)
+  }
+}
+hr {
+  border: none;
+  border-top: 1px solid #CCC
+}

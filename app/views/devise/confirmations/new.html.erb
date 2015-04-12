@@ -1,0 +1,17 @@
+<% title 'Reenviar correo de confirmación' %>
+<div class="bg-header"></div>
+<div class="wrap-xs">
+  <div class="logo x-centered l"></div>
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "panel text-center form-panel" }) do |f| %>
+    <%= devise_error_messages! %>
+    <h2>Reenviar correo de confirmación</h2>
+    <ul class="form-fields">
+      <li class="field"><%= f.email_field :email, autofocus: true, placeholder: "Tu correo electrónico", class: "input" %></li>
+      <li class="field"><%= f.submit "Reenviar", class: "button expand" %></li>
+    </ul>
+  <% end %>
+  <br>
+  <small>
+    <%= render "devise/shared/links" %>
+  </small>
+</div>

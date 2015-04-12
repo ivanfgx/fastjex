@@ -1,0 +1,21 @@
+.absolute-right { @include position(absolute, 0px 0px null null) }
+.absolute-left { @include position(absolute, 0px null null 0px) }
+
+.left { float: left }
+.right { float: right }
+
+.wrap-xs { @include wrap(400px) }
+
+.x-centered {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.clearfix { @include clearfix }
+
+.half-field {
+  width: 50%;
+  float: left;
+  &:first-child { padding-right: 0.5em }
+  &:last-child { padding-left: 0.5em }
+}

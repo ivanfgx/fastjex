@@ -1,0 +1,17 @@
+<% title '¿Ya se te olvidó la contraseña?' %>
+<div class="bg-header"></div>
+<div class="wrap-xs">
+  <div class="logo x-centered l"></div>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "panel text-center form-panel" }) do |f| %>
+    <%= devise_error_messages! %>
+    <h2>¿Ya se te olvidó?</h2>
+    <ul class="form-fields">
+      <li class="field"><%= f.email_field :email, autofocus: true, placeholder: "Tu correo electrónico", class: "input" %></li>
+      <li class="field"><%= f.submit "Enviar", class: "button expand" %></li>
+    </ul>
+  <% end %>
+  <br>
+  <small>
+    <%= render "devise/shared/links" %>
+  </small>
+</div>
